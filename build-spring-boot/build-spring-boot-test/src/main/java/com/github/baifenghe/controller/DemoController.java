@@ -2,9 +2,13 @@ package com.github.baifenghe.controller;
 
 import com.github.baifenghe.demo.IntegerService;
 import com.github.baifenghe.demo.StringService;
+import com.github.baifenghe.properties.DemoProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Set;
 
 /**
  * @author bfh
@@ -18,6 +22,31 @@ public class DemoController {
 
     @Autowired
     private StringService stringService;
+
+    @Autowired
+    private DemoProperties properties;
+
+
+
+    /**
+     * 测试 DemoProperties
+     */
+    @GetMapping("getStarterIps")
+    public Set<String> getStarterIps() {
+
+        return properties.getIps();
+
+    }
+
+
+    /**
+     * 测试 DemoProperties
+     */
+    @GetMapping("getStarterName")
+    public String getStarterName() {
+
+        return properties.getName();
+    }
 
 
     /**
