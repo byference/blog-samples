@@ -2,6 +2,7 @@ package com.github.baifenghe.controller;
 
 import com.github.baifenghe.demo.IntegerService;
 import com.github.baifenghe.demo.StringService;
+import com.github.baifenghe.properties.CommonProperties;
 import com.github.baifenghe.properties.DemoProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,29 @@ public class DemoController {
     @Autowired
     private DemoProperties properties;
 
+    @Autowired
+    private CommonProperties commonPropertie;
+
+
+    /**
+     * 测试 CommonProperties
+     */
+    @GetMapping("getCommonList")
+    public Set<String> getCommonList() {
+
+        return commonPropertie.getList();
+
+    }
+
+
+    /**
+     * 测试 CommonProperties
+     */
+    @GetMapping("getCommonName")
+    public String getCommonName() {
+
+        return commonPropertie.getName();
+    }
 
 
     /**
