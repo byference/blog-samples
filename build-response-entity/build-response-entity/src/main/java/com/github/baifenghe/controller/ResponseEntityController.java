@@ -1,6 +1,6 @@
 package com.github.baifenghe.controller;
 
-import com.github.baifenghe.util.R;
+import com.github.baifenghe.util.ResponseHelper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +21,12 @@ public class ResponseEntityController {
     @GetMapping("test")
     public ResponseEntity test() {
 
+        return ResponseHelper.status(HttpStatus.ACCEPTED).body(1, "");
+    }
+
+    @GetMapping("test1")
+    public ResponseEntity test1() {
+
         Map<String, Object> result = new HashMap<>(16);
         result.put("id", 1);
         result.put("message", "test1");
@@ -28,14 +34,10 @@ public class ResponseEntityController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(result);
     }
 
-    @GetMapping("test1")
-    public ResponseEntity test1() {
+    @GetMapping("test2")
+    public ResponseEntity test2() {
 
-        Map<String, Object> result = new HashMap<>(16);
-        result.put("id", 2);
-        result.put("message", "test2");
-        result.put("date", new Date());
-        return new R(HttpStatus.FOUND).body(1, "", result);
+        return ResponseHelper.ok().body(null);
     }
 
 

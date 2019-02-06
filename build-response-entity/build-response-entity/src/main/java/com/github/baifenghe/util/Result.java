@@ -1,15 +1,11 @@
 package com.github.baifenghe.util;
 
 import lombok.Builder;
-import lombok.Data;
 
 /**
- * 自定义返回体格式
- *
  * @author bfh
- * @since 1.0.0
+ * @since 2019/02/06
  */
-@Data
 @Builder
 public class Result<T> {
 
