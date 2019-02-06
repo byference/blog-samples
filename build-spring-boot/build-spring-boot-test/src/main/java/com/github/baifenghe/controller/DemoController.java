@@ -5,6 +5,7 @@ import com.github.baifenghe.demo.StringService;
 import com.github.baifenghe.properties.CommonProperties;
 import com.github.baifenghe.properties.DemoProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +29,21 @@ public class DemoController {
     private DemoProperties properties;
 
     @Autowired
-    private CommonProperties commonPropertie;
+    private CommonProperties commonProperties;
+
+
+
+    @Value("${bfh.name}")
+    private String name;
+
+    /**
+     * 测试 Value 注解
+     */
+    @GetMapping("getValueOfName")
+    public String getValueOfName() {
+
+        return name;
+    }
 
 
     /**
@@ -37,7 +52,7 @@ public class DemoController {
     @GetMapping("getCommonList")
     public Set<String> getCommonList() {
 
-        return commonPropertie.getList();
+        return commonProperties.getList();
 
     }
 
@@ -48,7 +63,7 @@ public class DemoController {
     @GetMapping("getCommonName")
     public String getCommonName() {
 
-        return commonPropertie.getName();
+        return commonProperties.getName();
     }
 
 
