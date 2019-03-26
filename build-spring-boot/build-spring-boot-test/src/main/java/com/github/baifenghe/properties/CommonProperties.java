@@ -19,7 +19,13 @@ import java.util.Set;
 @ConfigurationProperties(prefix = "common")
 public class CommonProperties {
 
+    /**
+     * common name.
+     */
     private String name = "common";
 
+    /**
+     * common list.
+     */
     private Set<String> list = new LinkedHashSet<>();
 }

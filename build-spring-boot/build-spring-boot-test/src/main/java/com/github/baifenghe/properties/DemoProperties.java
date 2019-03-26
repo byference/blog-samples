@@ -16,7 +16,13 @@ import java.util.Set;
 @ConfigurationProperties(prefix = "bfh")
 public class DemoProperties {
 
+    /**
+     * bfh name.
+     */
     private String name = "bfh";
 
+    /**
+     * bfh ip list.
+     */
     private Set<String> ips = new LinkedHashSet<>();
 }

@@ -32,7 +32,6 @@ public class DemoController {
     private CommonProperties commonProperties;
 
 
-
     @Value("${bfh.name}")
     private String name;
 
