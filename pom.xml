@@ -11,8 +11,8 @@
 
     <modules>
         <module>others</module>
-        <module>build-response-entity</module>
-        <module>spring-boot-profile</module>
+        <module>build-response-entity-project</module>
+        <module>spring-boot-profile-project</module>
         <module>build-spring-boot</module>
     </modules>
 
