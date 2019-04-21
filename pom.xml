@@ -4,17 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.baifenghe</groupId>
+    <groupId>com.github.byference</groupId>
     <artifactId>blog-samples</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
 
-    <modules>
-        <module>others</module>
-        <module>build-response-entity-project</module>
-        <module>spring-boot-profile-project</module>
-        <module>build-spring-boot</module>
-    </modules>
+
 
 
 </project>
