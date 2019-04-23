@@ -43,4 +43,41 @@ public class StreamTest {
         collect.forEach((k, v) -> System.out.printf("studentNo: [%s], name: %s \n", k, v));
     }
 
+
+    /**
+     * 根据学生年龄排序
+     */
+    @Test
+    public void sortTest() {
+
+        students.stream().sorted(Comparator.comparing(Student::getAge))
+                .forEach(System.out::println);
+    }
+
+
+    /**
+     * 学生年龄最大的人的名字
+     */
+    @Test
+    public void maxTest() {
+
+        students.stream()
+                .sorted(Comparator.comparing(Student::getAge).reversed())
+                .limit(1)
+                .forEach(System.out::println);
+    }
+
+
+    /**
+     * 学生年龄大于15的总和
+     */
+    @Test
+    public void sumTest() {
+
+        int sum = students.stream()
+                .filter(student -> student.getAge() > 15)
+                .mapToInt(Student::getAge).sum();
+        System.out.println("sum: " + sum);
+    }
+
 }
