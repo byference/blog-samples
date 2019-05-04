@@ -1,6 +1,6 @@
 package com.github.byference.lombok;
 
-import com.github.byference.entity.Person;
+import com.github.byference.common.entity.Person;
 import org.junit.Test;
 
 /**

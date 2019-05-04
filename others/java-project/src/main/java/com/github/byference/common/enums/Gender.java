@@ -1,4 +1,4 @@
-package com.github.byference.enums;
+package com.github.byference.common.enums;
 
 /**
  * @author byference

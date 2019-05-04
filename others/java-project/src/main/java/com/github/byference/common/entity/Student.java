@@ -1,6 +1,6 @@
-package com.github.byference.entity;
+package com.github.byference.common.entity;
 
-import com.github.byference.enums.Gender;
+import com.github.byference.common.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

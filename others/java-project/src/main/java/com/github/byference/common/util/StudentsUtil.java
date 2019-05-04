@@ -1,7 +1,7 @@
-package com.github.byference.util;
+package com.github.byference.common.util;
 
-import com.github.byference.entity.Student;
-import com.github.byference.enums.Gender;
+import com.github.byference.common.entity.Student;
+import com.github.byference.common.enums.Gender;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.github.byference.stream;
 
-import com.github.byference.entity.Student;
-import com.github.byference.util.StudentsUtil;
+import com.github.byference.common.entity.Student;
+import com.github.byference.common.util.StudentsUtil;
 import org.junit.Test;
 
 import java.util.*;

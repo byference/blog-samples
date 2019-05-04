@@ -1,4 +1,4 @@
-package com.github.byference.entity;
+package com.github.byference.common.entity;
 
 import lombok.Getter;
 import lombok.Setter;
