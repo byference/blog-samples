@@ -3,7 +3,7 @@ package com.github.byference.samples.service;
 import com.github.byference.samples.entity.Turnover;
 
 /**
- * Transactional {@link com.github.byference.samples.service}
+ * Transactional {@link org.springframework.stereotype.Service}
  *
  * @author byference
  * @since 2019/05/11
