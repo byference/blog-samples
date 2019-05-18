@@ -1,4 +1,4 @@
-package com.github.byference.async;
+package com.github.byference.juc.async;
 
 import com.github.byference.common.ThrowableHandle;
 import org.junit.Test;

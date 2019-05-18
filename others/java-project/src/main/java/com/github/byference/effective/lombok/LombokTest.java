@@ -1,4 +1,4 @@
-package com.github.byference.lombok;
+package com.github.byference.effective.lombok;
 
 import com.github.byference.common.entity.Person;
 import lombok.val;

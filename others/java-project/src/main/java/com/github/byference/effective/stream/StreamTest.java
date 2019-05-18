@@ -1,4 +1,4 @@
-package com.github.byference.stream;
+package com.github.byference.effective.stream;
 
 import com.github.byference.common.entity.Student;
 import com.github.byference.common.util.StudentsUtil;

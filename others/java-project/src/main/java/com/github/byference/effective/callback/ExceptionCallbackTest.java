@@ -1,4 +1,4 @@
-package com.github.byference.callback;
+package com.github.byference.effective.callback;
 
 import org.junit.Test;
 
