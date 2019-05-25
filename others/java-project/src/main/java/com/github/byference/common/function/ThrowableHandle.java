@@ -1,4 +1,4 @@
-package com.github.byference.common;
+package com.github.byference.common.function;
 
 /**
  * {@link Throwable} Handle

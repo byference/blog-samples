@@ -1,5 +1,6 @@
 package com.github.byference.effective.callback;
 
+import com.github.byference.common.function.ThrowableHandle;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -21,23 +22,14 @@ public class ExceptionCallbackTest {
 
 
     /**
-     * 异常处理接口
-     */
-    interface TestCallback {
-
-        void callback() throws IOException;
-    }
-
-
-    /**
      * 异常处理
-     * @param testCallback {@link TestCallback}
+     * @param throwableHandle {@link ThrowableHandle}
      */
-    private static void execute(TestCallback testCallback) {
+    private static void execute(ThrowableHandle throwableHandle) {
 
         try {
-            testCallback.callback();
-        } catch (IOException e) {
+            throwableHandle.handle();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

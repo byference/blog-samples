@@ -1,6 +1,6 @@
 package com.github.byference.juc.async;
 
-import com.github.byference.common.ThrowableHandle;
+import com.github.byference.common.function.ThrowableHandle;
 import org.junit.Test;
 
 import java.util.Objects;
