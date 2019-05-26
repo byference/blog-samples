@@ -1,11 +1,16 @@
 package com.github.byference.effective.stream;
 
+import com.github.byference.common.entity.Person;
 import com.github.byference.common.entity.Student;
 import com.github.byference.common.util.StudentsUtil;
+import lombok.AllArgsConstructor;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * {@link java.util.stream.Stream} in action
@@ -78,6 +83,46 @@ public class StreamTest {
                 .filter(student -> student.getAge() > 15)
                 .mapToInt(Student::getAge).sum();
         System.out.println("sum: " + sum);
+    }
+
+
+    @Test
+    public void generateTest2() {
+
+        AtomicInteger count = new AtomicInteger();
+        Stream.generate(new PersonGenerate(count))
+                .limit(50)
+                .filter(person -> person.getId() < 10)
+                .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Person::getId))))
+                .forEach(System.out::println);
+    }
+
+
+    @Test
+    public void generateTest1() {
+
+        AtomicInteger count = new AtomicInteger();
+        Stream.generate(new PersonGenerate(count))
+                .limit(50)
+                .filter(person -> person.getId() < 10)
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Person::getId))),
+                        ArrayList::new
+                )).forEach(System.out::println);
+    }
+
+
+
+    @AllArgsConstructor
+    class PersonGenerate implements Supplier<Person> {
+
+        private AtomicInteger count;
+
+        @Override
+        public Person get() {
+            int id = count.incrementAndGet();
+            return new Person(new Random().nextInt(10), "name_" + id);
+        }
     }
 
 }

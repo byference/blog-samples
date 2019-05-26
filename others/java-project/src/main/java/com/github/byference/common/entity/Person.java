@@ -1,8 +1,6 @@
 package com.github.byference.common.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 /**
@@ -13,6 +11,8 @@ import lombok.experimental.Accessors;
 @Setter
 @Getter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Person {
 
     /**
