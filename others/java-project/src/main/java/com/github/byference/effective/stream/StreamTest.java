@@ -86,6 +86,23 @@ public class StreamTest {
     }
 
 
+    /**
+     * 归组
+     */
+    @Test
+    public void partitioningTest1() {
+
+        AtomicInteger count = new AtomicInteger();
+        Stream.generate(new PersonGenerate(count))
+                .limit(20)
+                .collect(Collectors.partitioningBy(person -> person.getId() < 5))
+                .forEach((k, v) -> System.out.printf("key:%s ,value:%s\n", k, v));
+    }
+
+
+    /**
+     * 去重
+     */
     @Test
     public void generateTest2() {
 
@@ -98,6 +115,9 @@ public class StreamTest {
     }
 
 
+    /**
+     * 去重
+     */
     @Test
     public void generateTest1() {
 
