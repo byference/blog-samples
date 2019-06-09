@@ -6,6 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 
 /**
  * @author byference
@@ -30,6 +32,15 @@ public class InitializationBeans {
     @Bean
     public ApplicationRunner initDemo1() {
         return args -> System.out.println("ApplicationRunner");
+    }
+
+    /**
+     * 构造方法 -> @Autowired -> @PostConstruct
+     * @see PostConstruct
+     */
+    @PostConstruct
+    public void init() {
+        System.out.printf("PostConstruct [ name: %s, version: %s ]\n", name, version);
     }
 
 }
