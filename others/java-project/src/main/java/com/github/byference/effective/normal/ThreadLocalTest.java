@@ -9,6 +9,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 当不使用 ThreadLocal 的时候，可以在 finally 里面主动调用 {@link ThreadLocal#remove}
+ * 防止内存泄漏
+ *
  * @author byference
  * @since 2019/06/17
  */
