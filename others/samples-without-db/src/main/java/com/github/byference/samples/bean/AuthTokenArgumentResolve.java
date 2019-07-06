@@ -25,6 +25,7 @@ public class AuthTokenArgumentResolve implements HandlerMethodArgumentResolver {
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 
         String token = webRequest.getHeader("Authorization");
+        // 如果需求，可以对token解密，返回用户ID
         log.info("==> token: {}", token);
         return token;
     }
