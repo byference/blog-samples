@@ -35,7 +35,6 @@ public class WebFilter implements Filter {
             throws IOException, ServletException {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-
         // 获取header中的token
         String authorization = request.getHeader("Authorization");
         // 模拟对token解密
@@ -52,9 +51,7 @@ public class WebFilter implements Filter {
                 return super.getHeader(name);
             }
         };
-
         filterChain.doFilter(requestWrapper, servletResponse);
     }
-
 
 }
