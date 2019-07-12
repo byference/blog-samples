@@ -16,7 +16,7 @@ public class User {
     /**
      * 用户id
      */
-    private int id;
+    private Integer id;
 
     /**
      * 用户名

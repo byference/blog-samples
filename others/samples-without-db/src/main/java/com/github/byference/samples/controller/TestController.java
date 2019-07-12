@@ -2,13 +2,16 @@ package com.github.byference.samples.controller;
 
 import com.github.byference.samples.annotation.AuthToken;
 import com.github.byference.samples.entity.User;
+import com.github.byference.samples.entity.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 
 /**
@@ -18,6 +21,15 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @RestController
 public class TestController {
+
+
+
+    @PostMapping("/cardNumberValid")
+    public UserVO cardNumberValid(@Valid UserVO userVO) {
+
+        log.info("userVO: {}", userVO);
+        return userVO;
+    }
 
 
     /**
