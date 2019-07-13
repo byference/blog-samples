@@ -31,6 +31,6 @@ public class UserVO {
     /**
      * 卡号
      */
-    @ValidCardNumber(message = "卡号必须以T开头")
+    @ValidCardNumber
     private String cardNumber;
 }

@@ -19,7 +19,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = LoginCodeValidator.class)
 public @interface ValidCardNumber {
 
-    String message() default "{ValidCardNumber.message}";
+    String message() default "{com.github.byference.invalid.card.number.message}";
 
     Class<?>[] groups() default { };
 
