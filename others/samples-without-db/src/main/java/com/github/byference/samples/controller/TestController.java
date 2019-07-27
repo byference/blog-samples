@@ -3,7 +3,9 @@ package com.github.byference.samples.controller;
 import com.github.byference.samples.annotation.AuthToken;
 import com.github.byference.samples.entity.User;
 import com.github.byference.samples.entity.UserVO;
+import com.github.byference.samples.service.EchoService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +23,10 @@ import javax.validation.Valid;
 @Slf4j
 @RestController
 public class TestController {
+
+
+    @Autowired
+    private EchoService echoService;
 
 
 
@@ -49,7 +55,7 @@ public class TestController {
 
         String userId = request.getHeader("userId");
         log.info("userId: {}", userId);
-        return String.format("Echo: %s, Token: %s", message, token);
+        return echoService.echo(message);
     }
 
 }
