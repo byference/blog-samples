@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.byference.samples.mapper.UserInfoMapper">
+
+
+  <resultMap id="BaseResultMap" type="com.github.byference.samples.entity.UserInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_level" jdbcType="TINYINT" property="userLevel" />
+    <result column="receive_address" jdbcType="CHAR" property="receiveAddress" typeHandler="com.github.byference.samples.bean.JsonTypeHandler" />
+  </resultMap>
+
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from user_info
+  </select>
+
+
+  <insert id="insertSelective" parameterType="com.github.byference.samples.entity.UserInfo">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userLevel != null">
+        user_level,
+      </if>
+      <if test="receiveAddress != null">
+        receive_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userLevel != null">
+        #{userLevel,jdbcType=TINYINT},
+      </if>
+      <if test="receiveAddress != null">
+        #{receiveAddress,jdbcType=VARCHAR,typeHandler=com.github.byference.samples.bean.JsonTypeHandler},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>
