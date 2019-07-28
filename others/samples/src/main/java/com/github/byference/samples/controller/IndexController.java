@@ -2,7 +2,7 @@ package com.github.byference.samples.controller;
 
 import com.github.byference.samples.entity.ReceiveAddress;
 import com.github.byference.samples.entity.UserInfo;
-import com.github.byference.samples.mapper.UserInfoMapper;
+import com.github.byference.samples.service.UserInfoService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +21,13 @@ import java.util.List;
 @AllArgsConstructor
 public class IndexController {
 
-    private final UserInfoMapper userInfoMapper;
+    private final UserInfoService userInfoService;
 
 
     @RequestMapping("/user/infos")
     public List<UserInfo> userInfos() {
 
-        return userInfoMapper.selectAll();
+        return userInfoService.selectAll();
     }
 
 
@@ -43,7 +43,7 @@ public class IndexController {
         userInfo.setUserLevel(0);
         userInfo.setReceiveAddress(receiveAddress);
 
-        int i = userInfoMapper.insertSelective(userInfo);
+        int i = userInfoService.insertSelective(userInfo);
         return String.format("操作成功记录数: %s", i);
     }
 
