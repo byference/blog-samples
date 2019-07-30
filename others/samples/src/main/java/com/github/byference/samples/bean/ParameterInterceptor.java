@@ -33,9 +33,7 @@ public class ParameterInterceptor implements Interceptor {
         }
         BoundSql boundSql = mappedStatement.getBoundSql(parameter);
         /// to be update...
-        // log.info("==>  Preparing: {}", boundSql.getSql());
-        // log.info("==> Parameters: {}", "");
-        // log.info("<==    Updates: {}", "");
+        // log.info("SQL -> {}", boundSql.getSql());
         return invocation.proceed();
     }
 
