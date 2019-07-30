@@ -3,10 +3,14 @@ package com.github.byference.samples.controller;
 import com.github.byference.samples.annotation.AuthToken;
 import com.github.byference.samples.entity.User;
 import com.github.byference.samples.entity.UserVO;
+import com.github.byference.samples.properties.DefaultProperties;
 import com.github.byference.samples.service.EchoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.http.MediaType;
+import org.springframework.util.AntPathMatcher;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +26,31 @@ import javax.validation.Valid;
  */
 @Slf4j
 @RestController
+@EnableConfigurationProperties(DefaultProperties.class)
 public class TestController {
 
 
     @Autowired
     private EchoService echoService;
 
+    @Autowired
+    private DefaultProperties defaultProperties;
+
+
+
+    @PostMapping("/url/match")
+    public boolean defaultProperties(String path) {
+
+        AntPathMatcher pathMatcher = new AntPathMatcher();
+        String[] strings = StringUtils.delimitedListToStringArray(defaultProperties.getNonVerifiableUrls(), ",");
+        boolean match = false;
+        for (String string : strings) {
+            if (match = pathMatcher.match(string, path)) {
+                break;
+            }
+        }
+        return match;
+    }
 
 
     @PostMapping("/cardNumberValid")
