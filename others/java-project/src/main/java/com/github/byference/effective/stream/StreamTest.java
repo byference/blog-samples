@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BinaryOperator;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,7 +21,35 @@ import java.util.stream.Stream;
  */
 public class StreamTest {
 
-    private static List<Student> students = StudentsUtil.genStudents();
+    private static final List<Student> STUDENTS = StudentsUtil.genStudents();
+
+
+    /**
+     * 将list转成 {@link TreeMap}
+     * 通过 {@link BinaryOperator} 处理重复(key冲突)情况
+     */
+    @Test
+    public void toTreeMapTest() {
+
+        Map<String, String> collect = STUDENTS.stream()
+                .collect(Collectors.toMap(Student::getStudentNo, Student::getName, (s1, s2) -> s1, TreeMap::new));
+
+        collect.forEach((k, v) -> System.out.printf("key: %s , value: %s \n", k, v));
+    }
+
+
+    /**
+     * 将list转成map
+     * 通过 {@link BinaryOperator} 处理重复(key冲突)情况
+     */
+    @Test
+    public void toMapTest() {
+
+        Map<String, String> collect = STUDENTS.stream()
+                .collect(Collectors.toMap(Student::getStudentNo, Student::getName, (s1, s2) -> s1));
+
+        collect.forEach((k, v) -> System.out.printf("key: %s , value: %s \n", k, v));
+    }
 
 
     /**
@@ -29,7 +58,7 @@ public class StreamTest {
     @Test
     public void distinctTest() {
 
-        List<Student> collect = students.stream().collect(Collectors.collectingAndThen(
+        List<Student> collect = STUDENTS.stream().collect(Collectors.collectingAndThen(
                 Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Student::getStudentNo))),
                 ArrayList::new));
         collect.forEach(System.out::println);
@@ -42,7 +71,7 @@ public class StreamTest {
     @Test
     public void groupingTest() {
 
-        Map<String, List<String>> collect = students.stream().collect(Collectors.groupingBy(
+        Map<String, List<String>> collect = STUDENTS.stream().collect(Collectors.groupingBy(
                 Student::getStudentNo,
                 Collectors.mapping(Student::getName, Collectors.toList())));
         collect.forEach((k, v) -> System.out.printf("studentNo: [%s], name: %s \n", k, v));
@@ -55,7 +84,7 @@ public class StreamTest {
     @Test
     public void sortTest() {
 
-        students.stream().sorted(Comparator.comparing(Student::getAge))
+        STUDENTS.stream().sorted(Comparator.comparing(Student::getAge))
                 .forEach(System.out::println);
     }
 
@@ -66,7 +95,7 @@ public class StreamTest {
     @Test
     public void maxTest() {
 
-        students.stream()
+        STUDENTS.stream()
                 .sorted(Comparator.comparing(Student::getAge).reversed())
                 .limit(1)
                 .forEach(System.out::println);
@@ -79,7 +108,7 @@ public class StreamTest {
     @Test
     public void sumTest() {
 
-        int sum = students.stream()
+        int sum = STUDENTS.stream()
                 .filter(student -> student.getAge() > 15)
                 .mapToInt(Student::getAge).sum();
         System.out.println("sum: " + sum);
