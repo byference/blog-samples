@@ -3,3 +3,6 @@ server:
 samples:
   name: jerry
   nonVerifiableUrls: /url/*,/test/*
+spring:
+  mvc:
+    date-format: yyyy-MM-dd

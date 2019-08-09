@@ -7,6 +7,8 @@ import com.github.byference.samples.properties.DefaultProperties;
 import com.github.byference.samples.service.EchoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.http.MediaType;
 import org.springframework.util.AntPathMatcher;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -36,6 +40,21 @@ public class TestController {
     @Autowired
     private DefaultProperties defaultProperties;
 
+    @Value("${spring.mvc.date-format:yyyy-MM-dd}")
+    private String formatter;
+
+
+    /**
+     * by {@link WebMvcAutoConfiguration.EnableWebMvcConfiguration#mvcConversionService}
+     *
+     * @param date {@link Date}
+     */
+    @PostMapping("/date/format")
+    public String testDateFormat(Date date) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat(formatter);
+        return sdf.format(date);
+    }
 
 
     @PostMapping("/url/match")
