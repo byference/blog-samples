@@ -1,17 +1,25 @@
 package com.github.byference.samples;
 
+import com.github.byference.samples.configuration.HelloWorldImportSelector;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author bfh
  * @since 2019/06/23
  */
+@Import(HelloWorldImportSelector.class)
 @SpringBootApplication
 public class SamplesWithoutDbApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SamplesWithoutDbApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(SamplesWithoutDbApplication.class, args);
+        String helloWorld = context.getBean("importSelectorTest", String.class);
+        System.out.println("message: " + helloWorld);
+
+
     }
 
 }
