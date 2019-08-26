@@ -1,6 +1,7 @@
 package com.github.byference.samples;
 
 import com.github.byference.samples.configuration.HelloWorldImportSelector;
+import org.springframework.beans.BeansException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -16,9 +17,14 @@ public class SamplesWithoutDbApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(SamplesWithoutDbApplication.class, args);
-        String helloWorld = context.getBean("importSelectorTest", String.class);
-        System.out.println("message: " + helloWorld);
 
+
+        try {
+            String helloWorld = context.getBean("importSelectorTest", String.class);
+            System.out.println("importSelectorTest: " + helloWorld);
+        } catch (BeansException e) {
+            System.out.println("importSelectorTest is null");
+        }
 
     }
 
