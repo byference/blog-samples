@@ -1,7 +1,9 @@
 package com.github.byference.samples.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 系统用户实体类
@@ -9,6 +11,8 @@ import lombok.Data;
  * @author byference
  * @since 2019-07-07
  */
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Data
 public class User {
