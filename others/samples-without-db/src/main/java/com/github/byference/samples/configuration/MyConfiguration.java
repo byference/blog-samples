@@ -1,11 +1,14 @@
 package com.github.byference.samples.configuration;
 
+import com.github.byference.samples.bean.BeanDefinitionTestBean;
 import com.github.byference.samples.condition.ConditionalOnNotWindows10;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.Resource;
 
 /**
  * MyConfiguration
@@ -20,12 +23,16 @@ public class MyConfiguration {
     @Qualifier("extApplicationName")
     private String extApplicationName;
 
+    @Resource(name = "beanDefinitionTestBean")
+    private BeanDefinitionTestBean beanDefinitionTestBean;
+
 
     @ConditionalOnNotWindows10
     @Bean
     public String importSelectorTest() {
         return "helloWorld";
     }
+
 
     @Bean
     public String extApplicationName() {
@@ -36,7 +43,9 @@ public class MyConfiguration {
     @Bean
     public ApplicationRunner init() {
 
-        return args -> System.err.println("extApplicationName init: " + extApplicationName);
+        return args -> {
+            System.err.println("extApplicationName init: " + extApplicationName);
+            System.err.println("beanDefinitionTestBean init: " + beanDefinitionTestBean);
+        };
     }
-
 }
