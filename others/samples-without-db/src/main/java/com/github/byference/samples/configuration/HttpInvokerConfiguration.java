@@ -1,4 +1,4 @@
-package com.github.byference.samples.bean;
+package com.github.byference.samples.configuration;
 
 import com.github.byference.samples.service.EchoService;
 import org.springframework.beans.factory.annotation.Value;
