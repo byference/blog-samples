@@ -6,11 +6,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
+import org.springframework.retry.annotation.EnableRetry;
 
 /**
  * @author bfh
  * @since 2019/06/23
  */
+@EnableRetry
 @Import(HelloWorldImportSelector.class)
 @SpringBootApplication
 public class SamplesWithoutDbApplication {
