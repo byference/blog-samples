@@ -13,7 +13,7 @@ import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
  * @author byference
  * @since 2019-07-20
  */
-@Configuration
+//@Configuration
 public class HttpInvokerConfiguration {
 
     @Value("${server.port}")
@@ -25,6 +25,7 @@ public class HttpInvokerConfiguration {
 
         HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
         exporter.setService(echoService);
+        // EchoService should be a interface
         exporter.setServiceInterface(EchoService.class);
         return exporter;
     }
