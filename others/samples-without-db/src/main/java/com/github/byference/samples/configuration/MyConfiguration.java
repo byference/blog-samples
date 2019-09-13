@@ -5,10 +5,16 @@ import com.github.byference.samples.condition.ConditionalOnNotWindows10;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.annotation.Resource;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * MyConfiguration
@@ -25,6 +31,38 @@ public class MyConfiguration {
 
     @Resource(name = "beanDefinitionTestBean")
     private BeanDefinitionTestBean beanDefinitionTestBean;
+
+
+    /**
+     * @see TaskExecutionAutoConfiguration#taskExecutorBuilder()
+     * @return {@link Executor}
+     */
+    @Bean
+    public Executor taskExecutor() {
+
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setQueueCapacity(100);
+        executor.setCorePoolSize(10);
+        executor.setMaxPoolSize(10);
+        executor.setAllowCoreThreadTimeOut(true);
+        executor.setKeepAliveSeconds(60);
+        executor.setThreadNamePrefix("task-executor-");
+
+        executor.setTaskDecorator(runnable -> {
+            RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+            return () -> {
+                try {
+                    RequestContextHolder.setRequestAttributes(requestAttributes);
+                    runnable.run();
+                } finally {
+                    RequestContextHolder.resetRequestAttributes();
+                }
+            };
+        });
+        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        executor.initialize();
+        return executor;
+    }
 
 
     @ConditionalOnNotWindows10
