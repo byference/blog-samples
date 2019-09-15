@@ -24,9 +24,13 @@ public class AppBeanDefinitionRegistryPostProcessor implements BeanDefinitionReg
 
         BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(BeanDefinitionTestBean.class)
                 .addPropertyValue("beanName", "beanDefinitionTestBean");
-
         registry.registerBeanDefinition("beanDefinitionTestBean", builder.getBeanDefinition());
         log.info("==> registry beanDefinitionTestBean success...");
+
+
+        BeanDefinitionBuilder builder1 = BeanDefinitionBuilder.genericBeanDefinition(StringFactoryBean.class);
+        builder1.addConstructorArgValue(UserMapper.class);
+        registry.registerBeanDefinition("userMapper", builder1.getBeanDefinition());
     }
 
     @Override

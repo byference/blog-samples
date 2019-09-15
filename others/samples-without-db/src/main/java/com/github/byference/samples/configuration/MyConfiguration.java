@@ -1,6 +1,7 @@
 package com.github.byference.samples.configuration;
 
 import com.github.byference.samples.bean.BeanDefinitionTestBean;
+import com.github.byference.samples.bean.UserMapper;
 import com.github.byference.samples.condition.ConditionalOnNotWindows10;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,6 +33,8 @@ public class MyConfiguration {
     @Resource(name = "beanDefinitionTestBean")
     private BeanDefinitionTestBean beanDefinitionTestBean;
 
+    @Resource(name = "userMapper")
+    private UserMapper userMapper;
 
     /**
      * @see TaskExecutionAutoConfiguration#taskExecutorBuilder()
@@ -84,6 +87,7 @@ public class MyConfiguration {
         return args -> {
             System.err.println("extApplicationName init: " + extApplicationName);
             System.err.println("beanDefinitionTestBean init: " + beanDefinitionTestBean);
+            System.err.println("userMapper init: " + userMapper.print());
         };
     }
 }
