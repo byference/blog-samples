@@ -6,6 +6,7 @@ import com.github.byference.common.util.StudentsUtil;
 import lombok.AllArgsConstructor;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BinaryOperator;
@@ -22,6 +23,29 @@ import java.util.stream.Stream;
 public class StreamTest {
 
     private static final List<Student> STUDENTS = StudentsUtil.genStudents();
+
+
+    @Test
+    public void customBigDecimalReduce() {
+
+        // simple
+        BigDecimal sum = Stream.iterate(BigDecimal.ZERO, n -> n.add(BigDecimal.ONE)).limit(20).reduce(BigDecimals::sum).orElse(BigDecimal.ZERO);
+        BigDecimal max = Stream.iterate(BigDecimal.ZERO, n -> n.add(BigDecimal.ONE)).limit(20).reduce(BigDecimals::max).orElse(BigDecimal.ZERO);
+        BigDecimal min = Stream.iterate(BigDecimal.ZERO, n -> n.add(BigDecimal.ONE)).limit(20).reduce(BigDecimals::min).orElse(BigDecimal.ZERO);
+
+        // complex
+        List<BigDecimals.Person> persons = BigDecimals.getPersons();
+        System.out.println("persons: " + persons);
+        Map<String, BigDecimal> complexSum = persons.stream()
+                .filter(person -> person.getId() != 0)
+                .collect(Collectors.toMap(BigDecimals.Person::getUsername, BigDecimals.Person::getAccount, BigDecimals::sum));
+
+        // print
+        System.out.println("sum: " + sum);
+        System.out.println("max: " + max);
+        System.out.println("min: " + min);
+        System.out.println("complexSum: " + complexSum);
+    }
 
 
     /**
