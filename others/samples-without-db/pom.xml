@@ -24,17 +24,19 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.springframework.boot</groupId>-->
+<!--                    <artifactId>spring-boot-starter-logging</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
 
+        <!--使AsyncOutAppender 编译通过-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
